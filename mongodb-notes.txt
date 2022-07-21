@@ -1,0 +1,99 @@
+Type mongosh in root dir to start
+
+Help
+-list of commands 
+
+Show dbs
+-show current databases
+
+Use (enter db here) ie: use shopDB
+-creates new or opens existing db
+
+
+
+Examples in creating, reading, updating, and destroying data(CRUD):
+shopDB> db.products.insertOne({_id: 1, name: "pen", price: 1.20})
+{ acknowledged: true, insertedId: 1 }
+shopDB> db.products.insertOne({_id: 2, name: "pencil", price: 0.80})
+{ acknowledged: true, insertedId: 2 }
+shopDB> db.products.find()
+[
+  { _id: 1, name: 'pen', price: 1.2 },
+  { _id: 2, name: 'pencil', price: 0.8 }
+]
+shopDB> db.products.updateOne({_id: 1}, {$set: {stock: 32}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopDB> db.producs.find()
+[
+  { _id: 1, name: 'pen', price: 1.2, stock: 32 },
+  { _id: 2, name: 'pencil', price: 0.8 }
+]
+shopDB> db.products.updateOne({_id: 2}, {$set: {stock: 12}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+shopDB> db.products.find()
+[
+  { _id: 1, name: 'pen', price: 1.2, stock: 32 },
+  { _id: 2, name: 'pencil', price: 0.8, stock: 12 }
+]
+shopDB> db.products.deleteOne({_id: 2})
+{ acknowledged: true, deletedCount: 1 }
+shopDB> db.products.find()
+[ { _id: 1, name: 'pen', price: 1.2, stock: 32 } ]
+shopDB>
+
+
+
+
+Create product document with review documents embedded:
+shopDB> db.products.insert({_id: 3, name: "Rubber", price: 1.30, stock: 43, reviews: [{authorName: "Sally", rating: 5, review: "Best rubber ever!"}, {authorName: "John", rating: 5, review: "Awesome rubber!"}]})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{ acknowledged: true, insertedIds: { '0': 3 } }
+shopDB> db.products.find()
+[
+  { _id: 1, name: 'pen', price: 1.2, stock: 32 },
+  {
+    _id: 3,
+    name: 'Rubber',
+    price: 1.3,
+    stock: 43,
+    reviews: [
+      { authorName: 'Sally', rating: 5, review: 'Best rubber ever!' },
+      { authorName: 'John', rating: 5, review: 'Awesome rubber!' }
+    ]
+  }
+]
+
+db.products.insertOne({
+    _id: 2,
+    name: "Pencil",
+    price: 0.80,
+    stock: 12,
+    review: [
+        {
+            authorName: "James",
+            rating: 5,
+            review: "Fantastic!"
+        },
+        {
+            authorName: "Jono",
+            rating: 5,
+            review: "The best pencil I have used in my life."
+        }
+    ]
+})
+
+
+
+
