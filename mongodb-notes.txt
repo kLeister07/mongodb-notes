@@ -9,7 +9,11 @@ Show dbs
 Use (enter db here) ie: use shopDB
 -creates new or opens existing db
 
+Show collections
+-shows collections within a db
 
+db.dropDatabase()
+-deletes the current db you are in
 
 Examples in creating, reading, updating, and destroying data(CRUD):
 shopDB> db.products.insertOne({_id: 1, name: "pen", price: 1.20})
