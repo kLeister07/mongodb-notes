@@ -15,6 +15,10 @@ Show collections
 db.dropDatabase()
 -deletes the current db you are in
 
+db.(enter collection here).drop()
+-drops a collection in the db you are in
+-example: db.products.drop()
+
 Examples in creating, reading, updating, and destroying data(CRUD):
 shopDB> db.products.insertOne({_id: 1, name: "pen", price: 1.20})
 { acknowledged: true, insertedId: 1 }
