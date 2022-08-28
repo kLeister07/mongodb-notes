@@ -12,6 +12,9 @@ Use (enter db here) ie: use shopDB
 Show collections
 -shows collections within a db
 
+Find documents within a collection
+-shopDB> db.products.find()
+
 db.dropDatabase()
 -deletes the current db you are in
 
